@@ -1,0 +1,638 @@
+  100 rem nnbbs for the commodore 128
+  120 rem written in 1991 by deadline
+  140 rem pulled out in 2021 and put on
+  160 rem github. hopefully it will get
+  180 rem finished!
+  200 trap
+  220 fast
+  240 graphic 5
+  260 print"{home}{home}{home}"
+  280 goto400
+  300 goto10820
+  320 goto11200
+  340 goto11400
+  360 gosub300:goto320
+  380 gosub300:goto340
+  400 dimnm$(20),mth$(12),dy$(7),md(12),er$(30),eu$(30),hk$(50),ac$(9),t%(255),r%(255),qf$(100),qn$(100),qb$(100),qe$(100),tm$(7),dt$(7)
+  420 fori=32to64:t%(i)=i:next:fori=65to90:k=i+32:t%(i)=k:next:forj=91to95:t%(j)=j:next:forj=193to218:k=j-128:t%(j)=k:next:t%(13)=13:t%(8)=8:t%(20)=8:t%(12)=12
+  440 t%(26)=26:j=0:forj=0to255:k=t%(j):ifk<>0thenr%(k)=j:r%(k+128)=j
+  460 next:r%(13)=13:r%(8)=20:r%(34)=39:r%(12)=147:r%(10)=10:r%(26)=26:t%(25)=132:r%(132)=132:t%(147)=12
+  480 cr$=chr$(13):ss$="n":dv%(1)=8:dv%=8:hk$="n":rl=70:mb$(0)="nothing":nu$="y":ud$="n"
+  500 jk$="{cyn}-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-":t$="115945"
+  520 v1$="v1t3o2sa":ply$=v1$+"v2t5o4qabcdm"+v1$+"v2o4qbabdm"+v1$+"v2o4qbagcm"+v1$+"v2o4qgfhcm"+v1$+"wr"+v1$
+  540 fori=1to12:readmth$(i):readmd(i):next:fori=1to7:readdy$(i):next:fori=1to7:readas$(i):next:fori=1to8:reada$:keyi,a$:next:fori=1to30:reader$(i):next
+  560 fori=0to9:readac$(i):next:as$(9)="0"
+  580 close1:open5,2,5,chr$(8)+chr$(0):printchr$(142):print#5,"ate1"+cr$:print#5,"atm0"+cr$:print#5,"atv0"+cr$:print#5,"atx1"+cr$
+  600 printchr$(14);"{clr}{down}":poke53280,0:poke53281,0:tn$="":d=0:f=0
+  620 print"{home}{rvon}{wht}                                                               {gry1}  NNBBS 128 v1   "
+  640 print"{down}{down}{down}{down}{down}{rvon}{pur}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}Enter Month/Day/Year{rvof}{wht}{down}{down}{left}{left}{left}{left}{left}{left}{left}{left}{left}{left}/{left}{left}{left}{left}/{left}{left}{left}{rvon}  {rght}  {rght}  {left}{left}{left}{left}{left}{left}{left}{left}";
+  660 geta$:ifa$<>""theni=0
+  680 by$=" By Deadline/Cxn"
+  700 ifa$=""theni=i+1:ifi>1000thendy=31:wk=07:mh=12:yr=90:ti$="115955":pm$="pm":dt=1:by$=chr$(15)+"{red}  Power Failure! ":goto1520
+  720 ifa$=""thengoto660
+  740 ifa$=chr$(20)andtn$=""then660
+  760 ifa$=chr$(20)thentn$=left$(tn$,len(tn$)-1):else820
+  780 iflen(tn$)=3orlen(tn$)=5thenprint"{left} {left}{left}{left}";:goto660
+  800 iflen(tn$)=6thenprint"{rght} {left}{left}";:goto660:elseprint"{left} {left}{left}";:goto660
+  820 ifa$=chr$(13)then880
+  840 iflen(tn$)=6thenprint"{left}";a$;:tn$=left$(tn$,len(tn$)-1)+a$:goto660
+  860 tn$=tn$+a$:iflen(tn$)=3orlen(tn$)=5thenprint"{rght}";a$;:goto660:elseprinta$;:goto660
+  880 mh=val(mid$(tn$,1,2)):ifmh<1ormh>12then600
+  900 yr=val(mid$(tn$,5,2)):dy=val(mid$(tn$,3,2)):ly=1:d=yr/4:d$=str$(d):iflen(d$)>3thenly=0
+  920 ifly=1thenmd(2)=29:elsemd(2)=28
+  940 ifdy>md(mh)thengoto600
+  960 dy$=str$(dy):ifdy<10thendy$=" 0"+right$(dy$,1)
+  980 dt$=mth$(mh)+dy$+","+right$(str$(yr+1900),4):print"{home}{rght}{rght}{rght}{rght}{rght}{rvon}"dt$;:print
+ 1000 print"{home}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}                            {red}{up}{up}{up}{rvon}Use cursor keys for day."
+ 1020 print"{down}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}      {wht}{rvon}";dy$(1);"{rvof}   ":wk=1
+ 1040 getkeya$
+ 1060 ifa$=cr$then1160
+ 1080 ifa$="{rght}"thenwk=wk+1:ifwk>7thenwk=1:goto1140
+ 1100 ifa$="{left}"thenwk=wk-1:ifwk<1thenwk=7:goto1140:elsegoto1140
+ 1120 goto1040
+ 1140 print"{up}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rvon}";dy$(wk):goto1040
+ 1160 print"{home}{rght}{rvon}";dy$(wk):dt$=dy$(wk)+" "+dt$
+ 1180 print"{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}";
+ 1200 print"{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rvon}{cyn}{down}        Enter the hour .       "
+ 1220 print"{wht}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rvon}  {rvof}:{rvon}  {rvof}{rght}{rvon} {rvof}m{left}{left}{left}{left}{left}{left}{left}{left}";:tm$=""
+ 1240 getkeya$:ifa$=chr$(20)andtm$=""then1240:elseifa$=chr$(20)thentm$=left$(tm$,len(tm$)-1):print"{left} {left}{left}";:goto1240
+ 1260 tm$=tm$+a$:iflen(tm$)=3thenprint"{rght}";a$;:goto1240
+ 1280 iflen(tm$)=4thenprinta$;"{rght}{rght}";:goto1320
+ 1300 printa$;:goto1240
+ 1320 a=val(mid$(tm$,1,2)):b=val(mid$(tm$,3,2)):ifa>12ora<01orb>59thentm$="":print:print"{up}{up}{up}";:goto1200
+ 1340 hr=0:ifa=12thenhr=1
+ 1360 getkeya$
+ 1380 ifa$=chr$(20)thenprint"{left} {left}{left}{left} {left}";:tm$=left$(tm$,len(tm$)-1):goto1240
+ 1400 ifa$="a"thenpm$="am":print"{left}{rvon}a";:goto1360
+ 1420 ifa$="p"thenpm$="pm":print"{left}{rvon}p";:goto1360
+ 1440 ifa$=cr$andpm$=""thenprint"{left}{rvon}";left$(pm$,1):goto1360:elseifa$=cr$then1480
+ 1460 goto1360
+ 1480 tm$=mid$(tm$,1,2)+":"+mid$(tm$,3,2)+" "+pm$:print"{home}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rvon}{gry3}";tm$;"{wht}{rvon}  ":print"{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}"
+ 1500 print"{up}{wht}Press any key at exactly "tm$:getkeya$:ti$=left$(tm$,2)+mid$(tm$,4,2)+"00"
+ 1520 close5:trap:window0,0,79,2,1:print"{rvon}{wht}                                                               {gry1}  NNBBS 128 v1   "
+ 1540 print"{home}{home}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rvon}{wht}{gry1}last caller:{cyn}                         ":print"{home}{home}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{cyn}{rvon}";as$(7)
+ 1560 print"{rvon}{gry1} Online:    {cyn} No One      {gry3}                                      {cyn}"+by$:gosub12100:dt=1:gosub12060
+ 1580 window0,2,79,24,1:ti$=mid$(tm$,1,2)+mid$(tm$,4,2)+"00"
+ 1600 window0,2,79,24,1:print"{up}{home}{down}{down}{down}                             {cyn}{rvon}Status{rvof}{wht}: {gry1}{rvon}Hangin
+ 1620 print"{down}{home}{down}{down}{down}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rvon}{lred}{gry1}Waiting for call"
+ 1640 print"{down}{down}{rght}{rght}{lred}{rvon}Aslo stats{rvof}{wht}:"
+ 1660 print"{down}{down}{rght}{rght}{rvon}{lred}Feedback {rvof}{wht}: {rvon}";as$(1),"{rvon}{lred}New Uploads{rvof}{wht}: {rvon}";as$(2),"{rght}{rght}{rvon}{lred}New Posts{rvof}{wht}: {rvon}";as$(3),"{lred}{rvon}Downloads  {rvof}{wht}: {rvon}";as$(4)
+ 1680 print"{rght}{rght}{rvon}{red}Hacking? {rvof}{wht}: {rvon}";hk$,"{rvon}{red}# of Calls {rvof}{wht}: {rvon}";as$(6),"{rght}{rght}{rvon}{red}Last User{rvof}{wht}: {wht}{rvon}";as$(7):print"{rght}{rght}{rvon}{lred}New Users{rvof}{wht}: {rvon}";mid$(as$(9),2,len(as$(9)))
+ 1700 ss$(2)="{rvon}{lgrn}Not here":ifss$="y"thenss$(2)="{rvon}{lgrn}Here    "
+ 1720 ud$(2)="{rvon}{lgrn}No ":ifud$="y"thenud$(2)="{rvon}{lgrn}Yes"
+ 1740 nu$(2)="{rvon}{lgrn}No ":ifnu$="y"thennu$(2)="{rvon}{lgrn}Yes"
+ 1760 print"{down}{home}{rvon}{grn}  {lgrn} F1 Sysop is : ";ss$(2);"{grn}     {lgrn} F3 Alw New Usr : ";nu$(2);"{grn}    {lgrn} F5 U/D Open  : ";ud$(2);"{grn}      ":window0,2,79,24
+ 1780 close1:close15:close5:open5,2,5,chr$(6)+chr$(0)
+ 1800 geta$:ifa$=""thengosub12100:gosub12060:goto2060
+ 1820 ifa$="{f6}"thengoto2420
+ 1840 ifa$="{f2}"thenprint"{home}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{down}{down}";:goto1980
+ 1860 ifa$="{f1}"thenprint"{home}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{down}{down}";:goto2020
+ 1880 ifa$="{f5}"thenprint"{home}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{down}{down}";:goto1940
+ 1900 ifa$="#"thenclose5:open5,2,5,chr$(6)+chr$(0):print#5,"ata"+cr$:sleep2:goto2060
+ 1920 goto1800
+ 1940 ifnu$="n"thennu$="y":print"{rvon}{lgrn}Yes{home}":goto1800
+ 1960 ifnu$="y"thennu$="n":print"{rvon}{lgrn}No {home}":goto1800
+ 1980 ifud$="y"thenud$="n":print"{rvon}{lgrn}No ":goto1800
+ 2000 ifud$="n"thenud$="y":print"{rvon}{lgrn}Yes":goto1800
+ 2020 ifss$="y"thenss$="n":print"{rvon}{lgrn}Not Here{home}":goto1800
+ 2040 ifss$="n"thenss$="y":print"{rvon}{lgrn}Here    ":goto1800
+ 2060 window0,2,79,24:get#5,a$:ifa$<>"2"thengoto1800
+ 2080 print"{down}{home}{down}{down}{down}{down}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rvon}{lred}{gry1}Ringing...      "
+ 2100 get#5,a$:ifa$=""then2100
+ 2120 ifa$="3"thencar=0:bd=8:goto2220
+ 2140 ifa$="5"thencar=1:bd=8:goto4160
+ 2160 ifa$="1"thencar=1:bd=6:goto4160
+ 2180 ifa$="4"thencar=0:bd=8:goto2220
+ 2200 ifa$="0"thencar=0:bd=8:goto2100
+ 2220 wt$="{down}{home}{down}{down}{down}{down}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rvon}{lred}{gry1}Waiting For Call"
+ 2240 print#5,"+++":sleep3
+ 2260 get#5,a$:ifa$=""then2260
+ 2280 ifa$="0"thenprint#5,"ath"+cr$:goto2260
+ 2300 ifa$="4"thengoto2240
+ 2320 ifa$="3"thengoto1800
+ 2340 goto2240
+ 2360 rem what
+ 2380 ifcar=1thenprint"{up}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rvon}{gry1}Connect!        ":goto4160:elseprint#5,"+++":sleep2:print#5,"ath"+cr$:window0,2,79,24:printwt$:goto1800
+ 2400 goto2360
+ 2420 window0,2,79,24,1:fori=1to24:print"{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rvon}{gry3} ":next:window0,2,36,24,1
+ 2440 print"{down}{down}{rght}{rght}{rght}{cyn}{rvon}Sysop's Menu{rvof}{wht}:":print"{down}{down}{rght}{rght}{rvon}A{rvof}) {red}{rvon}Read System Log      ":print"{rght}{rght}{wht}{rvon}B{rvof}) {lred}{rvon}Reset Activity Stats "
+ 2460 print"{rght}{rght}{rvon}{wht}C{rvof}) {red}{rvon}Edit Users           ":print"{rght}{rght}{wht}{rvon}D{rvof}) {lred}{rvon}Disk Menu            ":print"{rght}{rght}{rvon}{wht}E{rvof}) {rvon}{red}Wait For Calls       ":print"{rght}{rght}{wht}{rvon}G{rvof}) {rvon}{lred}Disk Directory       "
+ 2480 print"{rght}{rght}{wht}{rvon}H{rvof}) {red}{rvon}Change Device #      ":print"{rght}{rght}{wht}{rvon}I{rvof}) {lred}{rvon}Logon Locally        ":print"{rght}{rght}{wht}{rvon}J{rvof}) {red}{rvon}Change Time          "
+ 2500 print"{rght}{rght}{wht}{rvon}T{rvof}) {lred}{rvon}Term Mode            "
+ 2520 print"{rght}{rght}{wht}{rvon}N{rvof}) {red}{rvon}Review New Users     "
+ 2540 ifhk$="yes"thenprint"{rght}{rght}{wht}{rvon}F{rvof}) "+chr$(15)+"See Who's Been Hacking."
+ 2560 geta$:ifa$=""thengosub12100:gosub12060:window0,2,79,24:goto2560
+ 2580 ifa$="e"thengoto1520:elseifa$="f"andhk$="y"then3800
+ 2600 ifa$="a"thenwindow0,2,79,24,1:open1,8,2,"\!user log,s":goto3880
+ 2620 ifa$="b"thenrestore:fori=1to31:reada$:next:fori=1to7:reada$:as$(i)=a$:next:as$(9)="0":window0,2,79,24,1:print"Activity Stats Reset    ";:goto3860
+ 2640 ifa$="i"thenwindow0,2,79,24,1:lc=1:close5:open5,2,5,chr$(8)+chr$(0):goto4160
+ 2660 ifa$="g"thenwindow39,2,79,24,1:print"{cyn}":directory u(dv%):print"      {wht}press any key":getkeya$:window39,2,79,24,1:goto2560
+ 2680 ifa$="h"thenwindow39,2,79,24,1:print"{down}{down}{wht}{rvon}Change to device{rvof}";:inputdv$:dv%=val(dv$):window39,2,79,24,1:goto2560
+ 2700 ifa$="c"then9540
+ 2720 ifa$="d"then8260
+ 2740 ifa$="f"then3800
+ 2760 ifa$="t"then3320
+ 2780 ifa$="{f6}"thenprint#5,"ata"+chr$(13):goto1520
+ 2800 ifa$="n"thenwindow0,2,79,24,1:print"{yel}Review New Users.":print"{grn}{CBM-T}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-T}":goto2860
+ 2820 ifa$="j"thenwindow0,2,79,24,1:hr=0:tm$="":ti$="115950":dt$="":goto640
+ 2840 goto2420
+ 2860 open1,8,2,"\!new users,s":get#1,a$:ifdsthenprintchr$(15);"{down}{down}{red}No New User File{wht}!":sleep2:goto2420: rem add a create prompt here --------------------------
+ 2880 get#1,a$:ifst<>0then3140
+ 2900 input#1,a$:ifa$="^"then2940
+ 2920 printa$:goto2880
+ 2940 print"{rght}{rght}{rght}{yel}Edit Access{wht}{rght}{rght}{rght}n{left}{left}{left}";:inputyn$:ifyn$<>"y"then2880
+ 2960 print"{down}Enter User Number {wht}{rght}{rght}{rght}0{left}{left}{left}";:inputur$:ifur$="0"then2940
+ 2980 ifval(ur$)>200thenprint"{down}{red}Number Too High{wht}!":sleep1:goto2960
+ 3000 dopen#3,"\!user recs":record#3,val(ur$):record#3,val(ur$):input#3,ed$:dclose#3:eu$=ed$
+ 3020 fori=1to30:eu$(i)="":next
+ 3040 gosub3200
+ 3060 print"{down}{yel}Current Access Level is {wht}:";eu$(3):print"{lgrn}Change To {wht}{rght}{rght}{rght}";eu$(3);"{left}{left}{left}";:inputnc$:ifnc$>"9"then3060
+ 3080 print"{down}{grn}Consider It Done{wht}...":eu$(3)=nc$
+ 3100 eu$="":fori=1to30:eu$=eu$+eu$(i)+"%":next
+ 3120 dopen#3,"\!user recs":record#3,val(ur$):record#3,val(ur$):print#3,eu$+cr$:dclose#3:goto2880
+ 3140 close1:print"{down}{red}End Of File{wht}!":print"{red}Shall I Forget It{wht}";:inputyn$:ifyn$<>"y"then2420
+ 3160 close15:open15,8,15,"s0:\!new users":close15:open1,8,1,"\!new users,s,w":print#1,"{yel}{yel}    New Users{wht}..."chr$(13):print#1,"{cyn}"+jk$+cr$:close1
+ 3180 print"{down}{down}{down}    {wht}Press A Key...":getkeya$:goto2420
+ 3200 j=1:i=0
+ 3220 i=i+1:ifi=len(eu$)+1theni=0:j=j+1:goto3220
+ 3240 ifj>30thenreturn
+ 3260 ifmid$(eu$,i,1)="%"theneu$(j)=mid$(eu$,1,i-1):eu$=mid$(eu$,i+1,len(eu$))+"*":j=j+1:i=0:goto3220
+ 3280 eu$(j)=eu$(j)+mid$(eu$,i,1)
+ 3300 goto3220
+ 3320 printchr$(15)+"{home}{home}{home}{down}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rvon}{lblu} Term Mode   ":window0,2,79,24,1
+ 3340 close5:open5,2,5,chr$(8)+chr$(0):print"{blk}":print#5,"atv1"+cr$:print"{wht}"
+ 3360 get#5,a$:ifa$=""then3400
+ 3380 printa$;:goto3360
+ 3400 get#5,a$:ifa$=""then3440
+ 3420 printa$;
+ 3440 geta$:ifa$=""then3400
+ 3460 ifa$="_"then3540
+ 3480 print#5,a$;
+ 3500 ifet=1thenprinta$;
+ 3520 goto3400
+ 3540 print:print"E - toggle echo        B - Back to BBS       C - Change Baud Rate"
+ 3560 getkeya$
+ 3580 ifa$="e"andet=1thenet=0:print:print"Echo Off.":goto3400
+ 3600 ifa$="e"andet=0thenet=1:print:print"Echo On.":goto3400
+ 3620 ifa$="b"thenprint#5,"atv0"+cr$:goto1520
+ 3640 ifa$="c"then3680
+ 3660 print:print"Menu Aborted.":goto3400
+ 3680 print:print"{blu}Change Baud    {wht}[{blu}3{wht}]{blu}00   {wht}[{blu}1{wht}]{blu}200  {wht}[{blu}A{wht}]{blu}bort{wht}."
+ 3700 getkeya$
+ 3720 ifa$="3"thenclose5:open5,2,5,chr$(6)+chr$(0):print"{up}{cyn}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}3{rght}00":print:goto3400
+ 3740 ifa$="1"thenclose5:open5,2,5,chr$(8)+chr$(0):print"{up}{cyn}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}1{rght}200":print:goto3400
+ 3760 ifa$="a"print"{up}{cyn}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}A{rght}bort":print:goto3400
+ 3780 goto3700
+ 3800 window0,2,79,24,1:print"               Those who appear to be hacking are:"
+ 3820 fori=1tohk
+ 3840 print"{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}"hk$(i):next:print"                    press any key":getkeya$:goto2420
+ 3860 print"{home}{down}                           ":hk$="no":hk=0:goto2420
+ 3880 get#1,a$:ifst<>0thenclose1:goto3980
+ 3900 input#1,yn$:a$=a$+yn$
+ 3920 getb$:ifb$<>""then3960
+ 3940 printa$;:goto3880
+ 3960 getb$:ifb$=""then3940
+ 3980 print:print"     {rvon}R{rvof}ead Log again    {rvon}E{rvof}rase Log    {rvon}X{rvof} Exit"
+ 4000 getkeyyn$
+ 4020 ifyn$="e"then4100
+ 4040 ifyn$="r"thenopen1,8,2,"\!user log,s":window0,2,79,24,1:goto3880
+ 4060 ifyn$="x"thengoto2420
+ 4080 goto4000
+ 4100 close1:open15,8,15,"s0:\!user log":close15:open1,8,1,"\!user log,s":gosub12100:print#1,"            {cyn}Log Restarted On {wht}- {rvon}";dt$(5);"{rvof}.  {cyn}At {wht}-{rvon}";tm$(5);cr$
+ 4120 print#1,jk$;cr$:close1
+ 4140 close1:print:print"{up}{up}                      The Log Has Been Reset.":sleep1:goto2420
+ 4160 ifcar=1thenprint"{up}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rvon}{gry1}Connect!
+ 4180 as(6)=as(6)+1:as$(6)=mid$(str$(as(6)),2,len(str$(as(6)))):sleep4:print"{home}{home}{down}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rvon}{cyn}             ":window0,2,79,24:cl=80
+ 4200 close5:open5,2,5,chr$(bd)+chr$(0)
+ 4220 get#5,a$:ifa$=""then4260
+ 4240 goto4220
+ 4260 gr=1:tt$="~~{clr}Press shift-@ :":gosub360
+ 4280 iftu$="{SHIFT-@}"thentt$="~~{cyn}C=64 {rvof}{yel}C{blu}o{pur}l{red}o{grn}r{cyn}{rvof} Graphics{wht}!~~~~":gr=1:gosub300:goto4320
+ 4300 tt$="~~asc mode~~~~~":gr=0:gosub300
+ 4320 tt$="~  {grn}NNBBS 128 v1":gosub300
+ 4340 tt$="~  {cyn}By {wht}:{cyn} Mr{wht}.{cyn}Deadline and Exidor{wht}.~":gosub300
+ 4360 tt$="~~~~{blu}Logon   {wht}'":gosub380:tt$="'~":gosub300:iflen(r$)<1thengoto4360
+ 4380 iflen(r$)>3then5460
+ 4400 ifr$="new"orr$="NEW"andnu$="y"thentt$="~{blu}Ah{wht}, {blu}a new user{wht}.~":gosub300:else5280
+ 4420 tt$="~~{blu}Please fill out this application{wht},~{blu}and we{wht}'{blu}ll look at it{wht}.~":gosub300
+ 4440 tt$="~{blu}Press Return{wht}:":gosub360:tt$="{clr}":pw=0:rl=25:print"{home}{home}{down}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rvon}{grn} New User    ":window0,2,79,24,1
+ 4460 fori=1to30:eu$(i)="@":next:eu$(20)="0":eu$(21)="0":eu$(22)="0"
+ 4480 ifr$="new"orr$="NEW"thentt$="{clr}{rvon}{blu}Handle          {rvof}{wht}:":gosub380:ifr$="NO ONE"then4480
+ 4500 eu$(1)="":fori=1tolen(r$):eu$(1)=eu$(1)+chr$(t%(asc(mid$(r$,i,1)))):next
+ 4520 tt$="~{rvon}{lblu}Real Name       {rvof}{wht}:":gosub380:ifr$=""then4520
+ 4540 eu$(4)=r$
+ 4560 tt$="~{rvon}{cyn}Street Address  {rvof}{wht}:":gosub380:ifr$=""then4560
+ 4580 eu$(5)=r$
+ 4600 tt$="~{rvon}{gry3}City            {rvof}{wht}:":gosub380:ifr$=""then4600
+ 4620 eu$(6)=r$
+ 4640 tt$="~{rvon}{gry2}State           {rvof}{wht}:":rl=2:gosub380:ifr$=""then4600
+ 4660 eu$(7)=r$
+ 4680 tt$="~{rvon}{cyn}Zip Code        {rvof}{wht}:":rl=6:gosub380:iflen(r$)<5then4680
+ 4700 eu$(8)=r$
+ 4720 tt$="~{rvon}{red}Phone Number    {rvof}{wht}:":rl=14:gosub380:iflen(r$)<>10then4720
+ 4740 ifmid$(r$,4,3)="976"thentt$="~Nice Try.~":gosub300:goto4720
+ 4760 eu$(9)=r$
+ 4780 tt$="~{rvon}{lred}Computer        {rvof}{wht}:":rl=25:gosub380:ifr$=""then4780
+ 4800 eu$(11)=r$
+ 4820 tt$="~{rvon}{lgrn}Occupation      {rvof}{wht}:":gosub380:ifr$=""then4820
+ 4840 eu$(10)=r$
+ 4860 tt$="~{rvon}{grn}Screen Width    {rvof}{wht}:":gosub380:ifr$=""then4860
+ 4880 ifr$<>"40"thenifr$<>"80"then4860
+ 4900 eu$(12)=r$
+ 4920 tt$="~{rvon}{wht}Password        {rvof}{wht}:":gosub380:ifr$=""then4920
+ 4940 eu$(2)=r$
+ 4960 tt$="~~And Finally, How did you hear about our system:~>":rl=25:gosub380
+ 4980 ifr$=""thenr$="don't know"
+ 5000 eu$(15)=r$:tt$="~~~{clr}":gosub300
+ 5020 tt$="~{blu} Please wait{wht},{blu} finding you a spot{wht}.~":gosub300:close1:dopen#1,"\!user quick,s":ur=1:i=1
+ 5040 get#1,a$:ifst<>0thenclose1:goto5100
+ 5060 input#1,a$:input#1,b$
+ 5080 qn$(i)=b$:i=i+1:goto5040
+ 5100 ur=0:fork=1toi:forj=1toi:ifval(qn$(j))=urthenur=ur+1:next:next:elsenext:next
+ 5120 ifur>200thentt$="~~There is no way I can cram you~into this system, it's packed~as it is. Call back later.~~":gosub300:rem(wait for calls)
+ 5140 tt$="~{blu}Your user number is  {wht}:"+str$(val(str$(ur)))+".~{blu}Your password is     {wht}:"+eu$(2)+".~":gosub300
+ 5160 eu$(20)="0":eu$(21)=eu$(20):eu$(22)=eu$(20):eu$(13)="500":eu$(3)="1":close3:dopen#3,"\!user recs":record#3,ur:record#3,ur
+ 5180 eu$="":fori=1to30:eu$=eu$+eu$(i)+"%":next:print#3,eu$+cr$:close3:sv$="":fori=1tolen(eu$(1)):sv$=sv$+chr$(r%(asc(mid$(eu$(1),i,1)))):next
+ 5200 close1:append#1,"\!user quick":print#1,"@"+sv$+cr$:print#1,str$(ur),cr$:close1:as(9)=as(9)+1:as$(9)=str$(as(9))
+ 5220 close1:append#1,"\!new users":print#1," {rvon}{blu} Handle   {rvof}{wht}-";eu$(1);cr$:print#1,"  {rvon}{lblu} Real Name{rvof}{wht}-";eu$(4);cr$:print#1," {rvon}{cyn} Phone #  {rvof}{wht}-";eu$(9);cr$
+ 5240 print#1," {rvon}{pur} State    {rvof}{wht}-";eu$(7);cr$:print#1," {rvon}{orng} Job      {rvof}{wht}-";eu$(10);cr$:print#1,jk$+cr$:print#1," {rvon}{red} Assigned # {rvof}{wht}-"+str$(ur)+cr$:print#1,"^";cr$
+ 5260 print#1,jk$+cr$:close1:goto4360
+ 5280 iflen(r$)=3then5300:else5360
+ 5300 ifleft$(r$,1)>"1"then4360
+ 5320 ifmid$(r$,2,1)>"9"then4360
+ 5340 ifright$(r$,1)>"9"then4360
+ 5360 iflen(r$)=2then5380:else5420
+ 5380 ifleft$(r$,1)>"9"then4360
+ 5400 ifright$(r$,1)>"9"then4360
+ 5420 ifr$>"9"then4360
+ 5440 ur=val(r$):goto5580
+ 5460 close1:dopen#1,"\!user quick",d0,u8:ifst<>0thentt$="~~{blu}System Problems{wht}.~{blu}Use your user number to Logon{wht}.~~":gosub300:close1:goto4360
+ 5480 get#1,a$:ifst<>0then5560:elseget#1,a$:ifst<>0then5560
+ 5500 input#1,a$:input#1,b$
+ 5520 ifa$=r$thentt$="~~{blu}You are user number{wht}: "+str$(val(b$))+".~":gosub300:close1:ur=val(b$):goto5580
+ 5540 goto5480
+ 5560 close1:tt$="~{blu}There is no user named {wht}{rvon}"+r$+"{CTRL-B}{rvof}.~":gosub300:goto4360
+ 5580 ifur>300thengoto4360
+ 5600 er$="":dclose#3:dopen#3,"\!user recs":record#3,ur:record#3,ur:input#3,er$:dclose#3:i=0:j=1
+ 5620 i=i+1:ifi=len(er$)+1thenj=j+1:i=0:goto5620
+ 5640 ifj>30then5700
+ 5660 ifmid$(er$,i,1)="%"theneu$(j)=mid$(er$,1,i-1):er$=mid$(er$,i+1,len(er$))+"*":j=j+1:i=0:goto5620
+ 5680 goto5620
+ 5700 gosub12600
+ 5720 print:print"{gry1}"eb$;"{wht}'{gry1}s Password is {wht}:{cyn}{rvon}";chr$(15);eu$(2):tt$="~{blu}Password{wht}'{wht}":pw=1:gosub380:pw=0:tt$="{wht}'~":gosub300
+ 5740 ifr$<>eu$(2)thentt$="{f6}{f6}{rght}{rght}{rght}{blu}That{wht}'{blu}s not your password{wht}.":hk$="yes":hk$(hk)="{rvon}{wht}"+eu$(1)+"{rvof} on "+dt$+" at "+tm$+" {rvon}login{rvof}.":hk=hk+1:gosub300:pc=pc+1:sleep1:else5800
+ 5760 ifpc=3thentt$="~~~{blu}We do not condone hacking{wht}.~{blu}Goodbye{wht}.~":gosub300:goto6480
+ 5780 goto4360
+ 5800 trap6060:cl=val(eu$(12)):tt$="{clr}~~{grn}Welcome to the board{wht}, {grn}"+eu$(1)+"{rvof}{wht}.~":gosub300:print"{home}{home}{down}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rvon}{cyn}             {home}{down}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}"eu$(1)
+ 5820 window0,2,79,24
+ 5840 print"{down}{down}":tt$="~~{gry3}Your access level is "+eu$(3)+"-"+ac$(val(eu$(3)))+"{rvof}":gosub300:
+ 5860 ifas$(7)=eb$thentt$="~~~{yel}The last caller was you{wht}!":gosub300:goto5920
+ 5880 tt$="~~~{grn}You just missed "+as$(7)+"{rvof}.":gosub300
+ 5900 close1:gosub12100:append#1,"\!user log",d0,u8:print#1,cr$;"{wht}"dt$(5)+" "+tm$(5)+".":print#1,cr$;"{cyn}{rvon}"+eu$(1)"{rvof}{wht} Logged In."+cr$+cr$:close1
+ 5920 tt$="~~{grn}Press Return{wht}:":gosub360:tt$="~~{clr}{blu}Instant Entry {wht}?( ){left}{left}":gosub360:iftu$="y"then6060
+ 5940 tt$="~~{blu}View title screen{wht}?( ){left}{left}":gosub360:iftu$="n"then5980
+ 5960 r$="\!title":gosub12440
+ 5980 tt$="~~{blu}Check mailbox {wht}?( ){left}{left}":gosub360
+ 6000 iftu$<>"y"then6060
+ 6020 open1,8,2,"\!m."+eu$(1):ifds>1thentt$="~~{blu}No mail{wht}.":gosub300:close1:sleep2:goto6060
+ 6040 close1:tt$="~~{blu}You have mail{wht}.":gosub300:close1:sleep2:goto6060
+ 6060 trap:tt$="~~~{lblu}What Now {gry1}({wht}":rl=64:gosub380:rl=254:tt$="{gry1})~":gosub300
+ 6080 ifr$="?"orr$="HELP"orr$="help"thenr$="\!menu1":gosub12440:goto6060
+ 6100 ifr$="o"orr$="O"thentt$="~~{grn}Goodbye{wht}, "+eu$(1)+".~":gosub300:sleep1:goto6420
+ 6120 ifr$="c"orr$="C"andch=1thentt$="~{cyn}The Sysop has already been paged{wht}!":gosub300:goto6060
+ 6140 ifr$="c"orr$="C"andss$="y"then6340
+ 6160 ifr$="c"orr$="C"andss$="n"thentt$="~~{cyn}The Sysop is not here{wht}.{SHIFT-POUND}{cyn} Leave feedback{wht}.":gosub300:goto6060
+ 6180 ifr$="ud"orr$="UD"then 6320
+ 6200 ifr$="b"orr$="B"then 7080
+ 6220 ifr$="elvis"orr$="ELVIS"thentt$="~~{cyn}ah{wht},{cyn} thank ya{wht}... {f6}{cyn}ah{wht},{cyn} thank ya very much{wht}..":gosub300:sleep1:goto6060
+ 6240 ifr$="m"orr$="M"then6720
+ 6260 ifr$="bc"orr$="BC"then6540
+ 6280 ifr$="ca"orr$="CA"then6640
+ 6300 tt$="~~{rvon}{red}  Hit '{wht}?{red}' if you're not sure.  ":gosub300:sleep1:goto6060
+ 6320 tt$="~~{red}{rvon}  That section is not complete yet..":gosub300:sleep2:goto6060
+ 6340 tt$="~~{cyn}Enter reason for chat{wht}.~:":rl=30:gosub300:gosub340
+ 6360 print"{home}{home}{down}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rvon}{gry3} {gry1}chat:{cyn}                               {gry3} "
+ 6380 r$=left$(r$,31):print"{home}{home}{down}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{gry1}{rvon}";chr$(15);"{red}Chat:":tempo25:a=0:do:playply$:a=a+1:loop until a=2:a=0:ch=1
+ 6400 printchr$(13);"{home}{down}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rvon}{cyn}";r$:window0,2,79,24,1:tt$="~~mr.deadline has been paged.":gosub300:sleep1:goto6060
+ 6420 trap12820:print"{home}{home}{down}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rvon}{gry3}                                     {gry3} ":as$(7)=eu$(1):eu$(1)=et$
+ 6440 eu$="":fori=1to30:eu$=eu$+eu$(i)+"%":next:dopen#3,"\!user recs":record#3,ur:record#3,ur:print#3,eu$:close3:append#3,"\!user log",d0,u8
+ 6460 gosub12100:print#3,"{cyn}Logged Off At -{wht} "+tm$(5)+".";cr$:print#3,jk$:close3:window0,2,79,24,1
+ 6480 pw=.:lc=.:pc=.:bc=.:ch=.:tt$="+++":gosub300:sleep3:tt$="ath":gosub300
+ 6500 close5
+ 6520 goto1520
+ 6540 tt$="{clr}~Please Enter New Baud Rate :":gosub380:i=val(r$)
+ 6560 ifi<110ori>1200thentt$="~~Not Good Enough.~":gosub300:goto6060
+ 6580 tt$="~Press return, then change your baud rate to "+r$+".~'A' to abort":gosub360:iftu$="a"ortu$="A"then6060
+ 6600 ah=int((1.02273e6/i/2-100)/256):al=1.02273e6/i/2-100-ah*256
+ 6620 close5:open5,2,5,chr$(bd)+chr$(0)+chr$(al)+chr$(ah):sleep4:tt$="~Baud Changed to "+r$+"{CTRL-B}.~":gosub300:goto6060
+ 6640 gr=1:tt$="~~{cyn}Press your shift-@ key{wht}'":gosub360:tt$="'~":gosub300
+ 6660 ifa$=chr$(186)andgr=0thengr=1:tt$="~~{cyn}{rvon}C=64 {yel}c{blu}o{pur}l{red}o{grn}r{cyn} mode engaged{rvof}{wht}.":gosub300:sleep2:goto6060
+ 6680 iftu$="{SHIFT-@}"thengr=1:tt$="~~{cyn}{rvon}C=64 {yel}c{blu}o{pur}l{red}o{grn}r{cyn} mode engaged{rvof}{wht}.":gosub300:sleep2:goto6060
+ 6700 tt$="~~asc mode engaged.":gr=.:gosub300:sleep1:goto6060
+ 6720 tt$="{clr}~~~{cyn}Message Bases{wht}...~~{cyn}Do you need to read the message~base news{wht}?'":gosub360:tt$="'":gosub300:iftu$<>"y"then6760
+ 6740 r$="\!mbase news":gosub12440
+ 6760 tt$="~{cyn}Message Base{wht}:"+str$(mb)+","+mb$((mb))+".":gosub300:tt$="~~That's all there is!":gosub300:sleep1:goto6060
+ 6780 close1:close15:open15,8,15,"s0:\!user quick":close15:open1,8,1,"\!user quick,s"
+ 6800 print#1,"@HELLO"+chr$(13):print#1,"0"+chr$(13)
+ 6820 print#1,"@MR.DEADLINE"+chr$(13):print#1,"1"+chr$(13)
+ 6840 print#1,"@EXIDOR."+chr$(13):print#1,"2"+chr$(13)
+ 6860 print#1,"@HACK BOY"+chr$(13):print#1,"3"+chr$(13)
+ 6880 print#1,"@CRAMBONE"+chr$(13):print#1,"4"+chr$(13)
+ 6900 print#1,"@OPUS"+chr$(13):print#1,"6"+chr$(13)
+ 6920 print#1,"@MR.SINISTER"+chr$(13):print#1,"5"+chr$(13)
+ 6940 print#1,"@TEST"+chr$(13):print#1,"9"+chr$(13)
+ 6960 close1:end
+ 6980 close1:open1,8,2,"\!user quick,s"
+ 7000 get#1,a$:ifst<>0then7040
+ 7020 printa$;:goto7000
+ 7040 close1:end
+ 7060 end
+ 7080 ifbc=2thentt$="~~{cyn}The Bank Is closed{wht}.~":gosub300:goto6060
+ 7100 tt$="{clr}~~{lblu}Welcome to 1st National Bank of {cyn}NNBBS{wht}.~~":gosub300:ifeu$(20)<>"0"then 7340
+ 7120 tt$="{lgrn}I see you do not have an account{wht}, {lgrn}{f6}Would you like to open one at this time{wht}?":gosub360:iftu$<>"y"thentt$="{swlc}{lblu}No{wht}.{lgrn}~~Very Well{wht}.":gosub300:sleep2:goto6060
+ 7140 tt$="{del}{lblu}Yes{wht}!"
+ 7160 tt$="~~{lgrn}One moment while I open your account{wht}...":gosub300
+ 7180 r=int(rnd(1)*9999)+1:r$=str$(r)
+ 7200 r$=right$(r$,len(r$)-1)
+ 7220 iflen(r$)=4then7260
+ 7240 fori=1to4-len(r$):r$="0"+r$:next
+ 7260 tt$="{clr}~{lgrn}The account number I have assigned for you is {wht}"+r$+".~~{lgrn}Is this acceptable{wht}?":gosub300:gosub320:iftu$<>"y"then7180
+ 7280 eu$(20)=r$:tt$="~~~{lgrn}Your account number is {wht}"+eu$(20)+" ~{lred}~WRITE THIS # DOWN{wht}!!{lgrn}~~You will not see it again{wht}.~~ {lgrn}Press {wht}{rvon}[{pur}RETURN{wht}]{rvof}:":gosub300:gosub320
+ 7300 eu$="":fori=1to30:eu$=eu$+eu$(i)+"%":next:dopen#3,"\!user recs":record#3,ur:record#3,ur:print#3,eu$:dclose#3
+ 7320 tt$="~{lgrn}Your account has been saved{wht}.":gosub300:sleep2
+ 7340 print:print"{down}";eu$(1);"'s bank account # is {rvon}";chr$(15);eu$(20):tt$="{lgrn}~~Enter your account #{wht}: {yel}":pw=1:gosub380:pw=0
+ 7360 ifr$=eu$(20)then7400:elsebc=bc+1:hk$="yes":gosub12580:hk$(hk)=eu$(1)+" on :"+dt$+"   at :"+tm$(2)+"  {rvon}bank":hk=hk+1:ifbc=2then6060
+ 7380 goto6060
+ 7400 close1:append#1,"\!user log",d0,u8:print#1,cr$;"{grn}Visited the Bank at {wht}-";:gosub12100:print#1,tm$(5)+".";cr$:close1
+ 7420 tt$="~~{lblu}Bank Cmd{wht}:( ){left}{left}":gosub360
+ 7440 iftu$="?"thenr$="\!mbank":gosub12440:goto7420
+ 7460 iftu$="q"ortu$="Q"then6060
+ 7480 iftu$="v"ortu$="V"then7680
+ 7500 rem iftu$="d"ortu$="D"then45700
+ 7520 iftu$="w"ortu$="W"then7860
+ 7540 iftu$="e"ortu$="E"then7960
+ 7560 iftu$="r"ortu$="R"then8060
+ 7580 iftu$="*"andeu$(4)="9"then8160
+ 7600 iftu$="c"ortu$="C"then7640
+ 7620 goto7420
+ 7640 tt$="~~{lgrn}Change account {wht}#, {lgrn}are you sure{wht}? ":gosub300:gosub320:iftu$="y"ortu$="Y"then7160
+ 7660 tt$="{del}{orng}Aborted{wht}.":gosub300:goto7420
+ 7680 tt$="{clr}~{lgrn}Statement of account{wht} # "+eu$(20)+" {lgrn}in~the name of {lred}"+eu$(1)+"{wht}.~~":gosub300:tt$="{gry3}   Item                    Amount~~":gosub300
+ 7700 tt$="{orng}   Time{gry3}....................{wht}"+eu$(21)+" {lblu}mins{wht}.~{orng}   Calls{gry3}...................{wht}"+eu$(22)+" {lblu}per day{wht}.":gosub300
+ 7720 tt$="~{orng}   Credits{gry3}.................{wht}"+eu$(13)+"{lblu} blocks.~~~":gosub300
+ 7740 tt$="{cyn}Press {wht}[{lred}RETURN{wht}]:":gosub360:goto7420
+ 7760 rem deposit
+ 7780 rem deposit
+ 7800 rem deposit
+ 7820 rem deposit
+ 7840 rem deposit
+ 7860 rem withdrawal
+ 7880 rem withdrawal
+ 7900 rem withdrawal
+ 7920 rem withdrawal
+ 7940 rem withdrawal
+ 7960 rem exchange
+ 7980 rem exchange
+ 8000 rem exchange
+ 8020 rem exchange
+ 8040 rem exchange
+ 8060 rem rob bank
+ 8080 rem rob bank
+ 8100 rem rob bank
+ 8120 rem rob bank
+ 8140 rem rob bank
+ 8160 rem sysop's
+ 8180 rem exchange valrror lenhannel.":ifdv%<>8thenopen15,dv%,15:input#15,a$:input#15,b$:input#15,c$:input#15,d$:close15:goto2520
+ 8200 rem sysop's
+ 8220 rem sysop's
+ 8240 rem sysop's
+ 8260 window0,2,79,24,1:print"{down}{gry1}{rvon}Sysop's Disk Menu{down}{down}"
+ 8280 print"{down}{wht}1) {rvon}{cyn}Read Error Channel."
+ 8300 print"{wht}2) {rvon}{gry1}Send A Dos Command."
+ 8320 print"{wht}3) {rvon}{cyn}Write A Seq. File ."
+ 8340 print"{wht}4) {rvon}{gry1}View A File.       "
+ 8360 print"{wht}5) {rvon}{cyn}Read Directory.    "
+ 8380 print"{wht}6) {rvon}{gry1}Change Device t.   {rvof} {wht}{rvon}";dv%
+ 8400 print"{wht}7) {rvon}{cyn}Open For Future.   "
+ 8420 print"{wht}8) {rvon}{gry1}Open For Future.   "
+ 8440 print"{wht}9) {rvon}{cyn}Open For Future.   "
+ 8460 print"{wht}0) {rvon}{gry1}Exit Disk Menu     "
+ 8480 printchr$(15);"{down}{wht}Which:":print
+ 8500 geta$:ifa$=""thengosub12060:goto8500
+ 8520 ifa$<"0"ora$>"9"then8500
+ 8540 a=val(a$)+1
+ 8560 window0,2,79,24,1:print"{down}":onagoto2420,8580,8640,8760,8860,9020,9120,9220,9320,9420
+ 8580 print"{wht}{rvon}Read Error Channel.":ifdv%<>8thenopen15,dv%,15:input#15,a$:input#15,b$:input#15,c$:input#15,d$:close15:goto8620
+ 8600 print"{down}{down}{rvon}Status{rvof}:":print"{down}{rght}{rvon}"ds$:print"{down}{down}Press Any Key.":getkeya$:goto8260
+ 8620 print"{down}{down}{rvon}Status{rvof}:":print"{down}{rght}{rght}{rvon}"+a$+","+b$+","+c$+","+d$:print"{down}{down}Press Any Key.":getkeya$:goto8260
+ 8640 print"{down}Enter Dos Command >${left}";:open1,0:input#1,yn$:close1
+ 8660 ifyn$="$"thengosub12800:directory u(dv%):goto8720
+ 8680 open15,dv%,15,yn$
+ 8700 close15
+ 8720 print:print:printds$:print:print"  Press any key.  'Q' to quit":getkeya$:ifa$="q"then8260
+ 8740 goto8640
+ 8760 rem write seq file
+ 8780 rem write seq file
+ 8800 rem write seq file
+ 8820 rem write seq file
+ 8840 rem write seq file
+ 8860 print"{down}What Type of File is it ? q{left}";:open1,0:input#1,ft$:close1
+ 8880 ifft$="q"then8260
+ 8900 print:print"What Is It's Name ? ${left}";:open1,0:input#1,fb$:close1
+ 8920 iffb$="$"thenprint:directory u(dv%):goto8900
+ 8940 print:print:open1,dv%,2,fb$+","+ft$+",r"
+ 8960 get#1,a$:ifst<>0then9000
+ 8980 printa$;:goto8960
+ 9000 close1:print:print" press any key 'q' to quit":getkeya$:ifa$="q"then8260:elsewindow0,2,79,24,1:goto8860
+ 9020 rem read directory
+ 9040 rem read directory
+ 9060 rem read directory
+ 9080 rem read directory
+ 9100 rem read directory
+ 9120 rem change device#
+ 9140 rem change device#
+ 9160 rem change device#
+ 9180 rem change device#
+ 9200 rem change device#
+ 9220 rem open
+ 9240 rem open
+ 9260 rem open
+ 9280 rem open
+ 9300 rem open
+ 9320 rem open
+ 9340 rem open
+ 9360 rem open
+ 9380 rem open
+ 9400 rem open
+ 9420 rem open
+ 9440 rem open
+ 9460 rem open
+ 9480 rem open
+ 9500 rem open
+ 9520 goto8260
+ 9540 window0,2,79,24,1:print"{down}{home}{gry1}{rvon}                                                :NNBBS 128 v1 Edit User Routine ":print"{home}{cyn}{rvon} User  # {wht}000":p1=1:p2=15
+ 9560 print"{home}{down}{lgrn}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}":print:print:fori=p1top2:in$=str$(i):iflen(in$)<3thenin$=" "+in$
+ 9580 print"{rght}{rght}{wht}"in$":";er$(i);"{wht}:":next
+ 9600 window0,2,79,24:print"{down}{down}{down}{down}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}                              {wht}":fori=1to30:eu$(i)="":next
+ 9620 window0,2,79,24:print"{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rvon}";:open1,0:input#1,un$:close1:ifval(un$)>300orval(un$)<0then9620
+ 9640 ifval(un$)=0thengoto2420
+ 9660 dopen#3,"\!user recs":ifds>1andds<>50thenclose3:print"{down}{home}{down}{down}{rght}{rght}{rght}{rght}{rvon}{red} Cannot find the user file! {wht}":sleep2:print"{down}{home}{down}{down}{rght}{rght}{rght}{rght}                                           ":goto9620
+ 9680 record#3,val(un$):record#3,val(un$)
+ 9700 input#3,er$:dclose#3:close15
+ 9720 j=1:i=0
+ 9740 i=i+1:ifi=len(er$)+1theni=0:j=j+1:goto9740
+ 9760 ifj>30thensv$=eu$(1):goto9840
+ 9780 ifmid$(er$,i,1)="%"theneu$(j)=mid$(er$,1,i-1):er$=mid$(er$,i+1,len(er$))+"*":j=j+1:i=0:goto9740
+ 9800 eu$(j)=eu$(j)+mid$(er$,i,1)
+ 9820 goto9740
+ 9840 print"{down}{home}{down}{down}{down}{down}";:fori=1to15:print"{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rvof}";eu$(i);"                    ":next
+ 9860 print:print"{wht}{rvon}^{rvof} Modify One Aspect   {rvon}*{rvof} Modify All Aspects   {rvon}S{rvof} Save user   {rvon}L{rvof} Load user":print"{rvon}{cyn}P{wht}{rvof} Flip Page           {lred}{rvon}_{rvof}{wht} Exit                ";
+ 9880 print" {lred}{rvon}D{rvof}{wht} Delete This User{up}"
+ 9900 geta$:ifa$=""thengosub12100:gosub12060:goto9900:elsewindow0,2,79,24
+ 9920 ifa$="^"then10180
+ 9940 ifa$="p"then10080
+ 9960 ifa$="*"then10340
+ 9980 ifa$="s"thenfork=1tolen(sv$):eu$=eu$+chr$(r%(asc(mid$(sv$,k,1)))):next:sv$=eu$:dlt=0:goto10380
+ 10000 ifa$="l"then9600
+ 10020 ifa$="d"thenfork=1tolen(sv$):eu$=eu$+chr$(r%(asc(mid$(sv$,k,1)))):next:sv$=eu$:goto10780
+ 10040 ifa$="_"then2420
+ 10060 goto9900
+ 10080 ifp1=1thenp1=16:p2=30:elsep1=1:p2=15
+ 10100 print"{down}{home}{down}{down}{down}{down}{down}":fori=p1top2:in$=str$(i):iflen(in$)<3thenin$=" "+in$
+ 10120 print"{rght}{rght}{wht}"in$":";er$(i);"{wht}:                                ":next
+ 10140 print"{down}{home}{down}{down}{down}{down}{down}":fori=p1top2:print"{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}";eu$(i):next
+ 10160 goto9900
+ 10180 print"{down}{home}{down}{down}{down}{down}{rght}{rght}{rght}{rght}{rght}{rvon}edit which aspect{rvof}       {left}{left}{left}{left}{left}{left}";:inputap$:print"{down}{home}{down}{down}{down}{down}{rght}{rght}{rght}{rght}                                         "
+ 10200 ifap$="0"thenprint"{down}{home}{down}{down}{down}{down}{rght}{rght}{rght}{rght}                        ":goto9900
+ 10220 ifval(ap$)<1orval(ap$)>30then10180
+ 10240 ifp1=1thendn=val(ap$):goto10280
+ 10260 dn=val(ap$)-15
+ 10280 print"{down}{home}{down}{down}{down}{down}":fori=1todn:print"{down}";:next:print"{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}";:open1,0:input#1,as$:close1
+ 10300 ifas$=eu$(val(ap$))thengoto9900
+ 10320 eu$(val(ap$))=as$:goto9900
+ 10340 print"{down}{home}{down}{down}{down}{down}{down}{down}";:fori=p1top2:print"{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}";:open1,0:input#1,eu$(i):close1:printchr$(13);:next
+ 10360 goto9900
+ 10380 er$="":fori=1to30:er$=er$+eu$(i)+"%":next
+ 10400 dopen#3,"\!user recs":record#3,val(un$):record#3,val(un$):print#3,er$+chr$(13):dclose#3:close15:i=0
+ 10420 fori=1to100:qf$(i)="":qn$(i)="":next:i=0
+ 10440 i=1:dopen#1,"\!user quick",d0,u8
+ 10460 get#1,a$:ifst<>0then10540
+ 10480 i=i+1:input#1,qf$(i):input#1,qn$(i)
+ 10500 ifi=200then10540:elseget#1,a$:ifst<>0then10540
+ 10520 goto10460
+ 10540 close1:j=0:eu$(1)=eu$:eu$="":qf$(1)=eu$(1)
+ 10560 j=j+1:ifj>ithen10660
+ 10580 ifeu$(1)=qf$(j)thenfork=jtoi-1:qf$(k)=qf$(k+1):qn$(k)=qn$(k+1):next:qf$(i)="":i=i-1:goto10560
+ 10600 ifsv$=qf$(j)thenfork=jtoi-1:qf$(k)=qf$(k+1):qn$(k)=qn$(k+1):next:qf$(i)="":i=i-1:goto10560
+ 10620 ifval(un$)=val(qn$(j))thenfork=jtoi-1:qf$(k)=qf$(k+1):qn$(k)=qn$(k+1):next:qf$(i)="":i=i-1:goto10560
+ 10640 goto10560
+ 10660 fork=1toi:qf$(k)=qf$(k+1):qn$(k)=qn$(k+1):next:ifdlt=1theni=i-1:goto10700
+ 10680 qf$(i)=eu$(1):qn$(i)=str$(val(un$)):qn$(i)=mid$(qn$(i),2,len(qn$(i)))
+ 10700 close15:open15,8,15,"s0:\!user quick":close15:open1,8,1,"\!user quick,s":print#1,"@User Quick!"+chr$(13):print#1,"0"+chr$(13):forj=1toi:ifqf$(j)=""thennext:close1:goto10760
+ 10720 print#1,"@"+qf$(j)+chr$(13):print#1,qn$(j)+chr$(13):next:close1
+ 10740 dlt$="Saved{wht}.   ":ifdlt=1thendlt=0:dlt$="{red}Deleted{wht}.    "
+ 10760 window0,2,79,24:print"{down}{down}{down}{down}{down}    {cyn}User "+dlt$:sleep2:print"{down}{home}{down}{down}{down}{down}{rght}{rght}{rght}{rght}                 ":goto9900
+ 10780 window0,2,79,24:print"{down}{down}{down}{down}{rght}{rght}{rght}{red}Delete This User{wht}? ";:open1,0:input#1,yn$:close1:ifyn$="n"thenprint"{up}                                 ":goto 9920
+ 10800 eu$="":fori=1to30:eu$(i)="@":next:eu$(1)="no one":eu$(20)="0":fori=1to30:eu$=eu$(i)+"%":next:dlt=1:goto10380
+ 10820 rem transmit routine (to modem)
+ 10840 i=1:do until i>len(tt$):tq$=mid$(tt$,i,1)
+ 10860 iftq$="{SHIFT-POUND}"then10940
+ 10880 iftq$="~"then11100
+ 10900 iftq$="{f6}"then10960
+ 10920 iftq$<>"{SHIFT-+}"then11140:else11060
+ 10940 iftq$="{SHIFT-POUND}"andcl=40andgr=0thenprint#5,cr$+chr$(10);:printcr$;:goto11180
+ 10960 iftq$="{f6}"andcl=40andgr=0thenprint#5,cr$+chr$(10);:printcr$;:goto11180
+ 10980 iftq$="{SHIFT-POUND}"andcl=40andgr=1thenprint#5,cr$;:printcr$;:goto11180
+ 11000 iftq$="{f6}"andcl=40andgr=1thenprint#5,cr$;:printcr$;:goto11180
+ 11020 iftq$="{SHIFT-POUND}"then11180
+ 11040 iftq$="{f6}"then11180
+ 11060 iftq$="{SHIFT-+}"andgr=0thenprint#5,cr$+chr$(10);:printcr$;:goto11180
+ 11080 iftq$="{SHIFT-+}"andgr=1thenprint#5,cr$;:printcr$;:goto11180
+ 11100 iftq$="~"andgr=0thenprint#5,cr$+chr$(10);:printcr$;:goto11180
+ 11120 iftq$="~"andgr=1thenprint#5,cr$;:printcr$;:goto11180
+ 11140 ifgr=0thenprinttq$;:iflc=0thenprint#5,chr$(t%(asc(tq$)));:goto11180
+ 11160 ifgr=1thenprinttq$;:iflc=0thenprint#5,tq$;
+ 11180 i=i+1:loop:return
+ 11200 get#5,a$:ifa$=""theni=0:goto11240
+ 11220 goto11200
+ 11240 iflc=0thenget#5,a$:ifa$<>""then11280
+ 11260 geta$:ifa$=""thengoto11240
+ 11280 ifgr=1anda$="{clr}"ora$="{home}"then11200
+ 11300 ifgr=0anda$=chr$(r%(12))then11200
+ 11320 printa$;
+ 11340 ifgr=1thenprint#5,a$;:tu$=a$:return
+ 11360 ifgr=0thenprint#5,chr$(t%(asc(a$+chr$(0))));:tu$=chr$(r%(asc(a$+chr$(0)))):return
+ 11380 print#5,chr$(13):return
+ 11400 get#5,a$:ifa$=""then11440
+ 11420 goto11400
+ 11440 r$=""
+ 11460 iflc=0thenget#5,a$:ifa$<>""then11640
+ 11480 geta$:ifa$=""then11460
+ 11500 ifa$<>"{f1}"then11660
+ 11520 tp$=tt$:tt$="{clr}Entering Chat Mode.~":gosub300
+ 11540 geta$:ifa$<>""then11580
+ 11560 get#5,a$:ifa$=""then11540
+ 11580 ifa$="{f1}"then11620
+ 11600 print#5,a$;:printa$;:goto11540
+ 11620 tt$="~Exiting Chat Mode.~":gosub300:tt$="~"+tp$:gosub300:goto11400
+ 11640 ifgr=0thena$=chr$(r%(asc(a$)))
+ 11660 ifa$=chr$(147)then11460
+ 11680 ifa$=chr$(20)andr$<>""thenr$=left$(r$,len(r$)-1):print#5,a$;:printa$;:goto11460
+ 11700 ifa$=chr$(20)thengoto11460
+ 11720 ifa$=chr$(13)thenreturn
+ 11740 iflen(r$)>rlthen11460
+ 11760 ifa$<"a"ora$>"z"then11800
+ 11780 a$=chr$(asc(a$)+128)
+ 11800 r$=r$+a$:printa$;
+ 11820 ifpw=1thenprint#5,".";:goto11460
+ 11840 ifgr=0thenprint#5,chr$(r%(asc(a$)));:goto11460
+ 11860 print#5,a$;:goto11460
+ 11880 data"Jan",31,"Feb",28,"Mar",31,"Apr",30,"May",31,"Jun",30,"Jul",31,"Aug",31,"Sep",30,"Oct",31,"Nov",30,"Dec",31,"Mon","Tue","Wed","Thu","Fri","Sat","Sun"
+ 11900 data0,0,0,0,no,0,"Power Failure","{f1}","{f3}","{f5}","{f7}","{f2}","{f4}","{f6}","{f8}"
+ 11920 data "{rvon}{gry1} Handle             {rvof}","{rvon}{cyn} Password           {rvof}","{rvon}{gry1} Access Level       {rvof}","{rvon}{cyn} Real Name          {rvof}", "{rvon}{gry1} Address            {rvof}"
+ 11940 data "{rvon}{cyn} City               {rvof}","{rvon}{gry1} State              {rvof}","{rvon}{cyn} Zip Code           {rvof}", "{rvon}{gry1} Phone Number       {rvof}","{rvon}{cyn} Occupation         {rvof}"
+ 11960 data "{rvon}{gry1} Computer Type      {rvof}","{rvon}{cyn} Screen Width       {rvof}","{rvon}{gry1} U/D Credit Blocks  {rvof}","{rvon}{cyn} Baud Rate          {rvof}", "{rvon}{gry1} How heard of Sys.  {rvof}"
+ 11980 data "{rvon}{gry1} Graphics Mode      {rvof}","{rvon}{cyn} open               {rvof}","{rvon}{gry1} open               {rvof}","{rvon}{cyn} open               {rvof}", "{rvon}{gry1} Bank Account #     {rvof}"
+ 12000 data "{rvon}{cyn} Time In Bank       {rvof}","{rvon}{gry1} Calls In Bank      {rvof}","{rvon}{cyn} Calls Remaining    {rvof}", "{rvon}{gry1} open               {rvof}","{rvon}{cyn} open               {rvof}"
+ 12020 data "{rvon}{gry1} open               {rvof}","{rvon}{cyn} open               {rvof}","{rvon}{gry1} open               {rvof}","{rvon}{cyn} open               {rvof}", "{rvon}{gry1} open               {rvof}"
+ 12040 data"Gutter Slime","New User","Probation","Validated 300","Validated 1200","Member","Regular","Advanced","Super User","Sysop"
+ 12060 window0,1,79,2:a$="{home}{home}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rvon}{gry1}":ifdt=1thendt=0:print"{home}{home}{rght}{wht}{rvon}";dt$
+ 12080 printa$;tm$:window0,2,79,24:return
+ 12100 cn$=" ":ty$=right$(ti$,1):ifty$="1"orty$="3"orty$="5"orty$="7"orty$="9"thencn$=":"
+ 12120 dy$=str$(dy):ifdy<10thendy$=dy$+"0"
+ 12140 tm$=left$(ti$,2)+cn$+mid$(ti$,3,2)+" "+pm$
+ 12160 tm$(2)=left$(ti$,2)+":"+mid$(ti$,3,2)+" "+pm$
+ 12180 ifval(left$(ti$,2))=12andpm$="am"andhr=0thenhr=1:pm$="pm":ti$="12"+right$(ti$,4):goto12140
+ 12200 ifval(left$(ti$,2))=12andpm$="pm"andhr=0thenhr=1:pm$="am":tm$(3)=mid$(ti$,3,2):tm$(4)=mid$(ti$,5,2):ti$="12"+tm$(3)+tm$(4):dy=dy+1:goto12300
+ 12220 ifhr=1andright$(ti$,4)="5959"thenhr=0
+ 12240 tm$(5)=left$(ti$,2)+" "+mid$(ti$,3,2)+" "+pm$:dt$(5)=dy$(wk)+" "+mth$(mh)+" "+dy$+" - 19"+right$(str$(yr),2)+"."
+ 12260 dt$=dy$(wk)+" "+mth$(mh)+dy$+",19"+right$(str$(yr),2)
+ 12280 return
+ 12300 dy=dy+1:wk=wk+1:ifwk>7thenwk=1
+ 12320 ifdy>md(mh)thenmh=mh+1:dy=1
+ 12340 ifmh>12thenmh=1:yr=yr+1
+ 12360 dy$=str$(dy):ifdy<10thendy$=" 0"+right$(dy$,1)
+ 12380 dt=1:dt$=dy$(wk)+" "+mth$(mh)+dy$+",19"+right$(str$(yr),2)
+ 12400 tm$=left$(ti$,2)+cn$+mid$(ti$,3,2)+" "+pm$
+ 12420 tm$(2)=left$(ti$,2)+":"+mid$(ti$,3,2)+" "+pm$:goto12220
+ 12440 tt$="{clr}":gosub300:close1:open1,8,2,r$+",s":ifst<>0thenclose1:return
+ 12460 get#1,a$:ifst<>0thenclose1:return
+ 12480 input#1,yn$:a$=a$+yn$
+ 12500 ifmid$(a$,2,1)<>"^"thentt$=a$:gosub300:goto12460
+ 12520 ifval(mid$(a$,3,1))<0thentt$=a$:gosub300:goto12460
+ 12540 ifval(mid$(a$,3,1))>9thentt$=a$:gosub300:goto12460
+ 12560 ifval(mid$(a$,3,1))>val(eu$(3))then12460
+ 12580 tt$=left$(a$,1)+mid$(a$,4,len(a$)):gosub300:goto12460
+ 12600 eb$="":et$=eu$(1):i=1
+ 12620 do untili>len(et$):ef$=mid$(et$,i,1)
+ 12640 ifef$<>" "thenifef$<>"."thenifi>1theneb$=eb$+ef$:goto12760
+ 12660 ifi=1theneb$=eb$+chr$(r%(asc(ef$))):goto12760
+ 12680 ifef$="."andi=len(et$)thengoto12760
+ 12700 ifef$="."andmid$(et$,i+1,1)=" "theneb$=eb$+". "+chr$(r%(asc(mid$(et$,i+2,1)))):i=i+2:goto12760
+ 12720 ifef$="."theneb$=eb$+"."+chr$(r%(asc(mid$(et$,i+1,1)))):i=i+1:goto12760
+ 12740 ifef$=" "theneb$=eb$+" "+chr$(r%(asc(mid$(et$,i+1,1)))):i=i+1:goto12760
+ 12760 i=i+1:loop
+ 12780 eu$(1)=eb$:eu$="":er$="":return
+ 12800 window0,2,79,24,1:print"{wht}Error in Waiting for call..":stop
+ 12820 print#5,"+++":sleep2:print#5,"ath":goto1520
+

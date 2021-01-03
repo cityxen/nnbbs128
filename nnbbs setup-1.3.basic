@@ -1,0 +1,139 @@
+  100 fast
+  200 dimcf$(22),ec$(22),er$(30),eu$(30)
+  300 fori=1to20:reada$:cf$(i)="{rvof}"+a$:next:fori=1to30:reader$(i):next:fori=1to20:readec$(i):next
+  400 key1,"a":key2,"b":key3,"c":key4,"d":key5,"e":key6,"f":key7,"g":key8,"h"
+  500 print"{clr}{rvon}{gry1}                           {cyn}{rvon}nnbbs 128 v1 setup file{gry1}                             {blu}"
+  600 fori=1to79:print"{CBM-Y}";:next
+  700 print"{down}{down}{rght}{rght}{rght}   {gry1}{rvon}1{rvof}{wht}) edit users
+  800 print"{rght}{rght}{rght}{rght} {gry1}{rvon}2{rvof}{wht}) edit configuration
+  900 print"{rght}{rght}{rght}{rght} {gry1}{rvon}3{rvof}{wht}) edit seq files
+ 1000 print"{rght}{rght}{rght}{rght} {gry1}{rvon}4{rvof}{wht}) make user files
+ 1100 print"{rght}{rght}{rght}{rght} {gry1}{rvon}5{rvof}{wht}) load nnbbs 128 v1
+ 1200 print"{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{blu}":fori=1to79:print"{CBM-P}";:next:print
+ 1300 print"{rvon}{gry1}                            {cyn}{rvon}     by deadline   {gry1}                            {home}{down}"
+ 1400 fori=1to18:print"{rvon}{gry1} {rvof}{blu}{CBM-H}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{CBM-N}{rvon}{gry1} {rvof}":next
+ 1500 print"{home}{down}{rvon}{gry1} {rvof}{blu}O{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}P{rvon}{gry1} {rvof}"
+ 1600 print"{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{rvon}{gry1} {rvof}{blu}L{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{SHIFT-@}{rvon}{gry1} {rvof}"
+ 1700 getkeya$
+ 1800 onval(a$)goto7400,2100,4900,5100,7000
+ 1900 goto1700
+ 2000 rem
+ 2100 print"{clr}{gry1}{rvon}                                             :nnbbs 128 v1 configuration editor"
+ 2200 print"{cyn}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}" :fori=1to20:i$=str$(i):iflen(i$)<3theni$=" "+i$
+ 2300 print"{wht}";i$;":";ec$(i);"{wht}:":next
+ 2400 print"{home}{down}{down}";:gh$="{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}":fori=1to20:printgh$;"{rvof}{wht}";cf$(i):next
+ 2500 print"{home}{down}{down}{down}{wht}":gh$="{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{blk}:{wht}":printgh$;" press {rvon}f1{rvof} to edit all aspects."
+ 2600 print"{down}{down}";gh$;" press {rvon}f2{rvof} to edit one aspect."
+ 2700 print"{down}{down}";gh$;" press {rvon}f3{rvof} to save this":printgh$;"     configuration."
+ 2800 print"{down}";gh$;" press {rvon}f5{rvof} to return to":printgh$;"     main menu."
+ 2900 print"{down}";gh$;" press {rvon}f7{rvof} to load a":printgh$;"     configuration."
+ 3000 getkeya$:ifa$<"a"ora$>"h"then3000
+ 3100 ifa$="a"then4300
+ 3200 ifa$="b"then3700
+ 3300 ifa$="c"then4600
+ 3400 ifa$="e"then500
+ 3500 ifa$="g"then4700
+ 3600 goto3000
+ 3700 print"{home}{rvon}{cyn}edit which aspect:{wht}00{left}{left}";:open1,0:input#1,a$:close1
+ 3800 ifa$="0"thenprint"{home}{down}{down}{rght}{rght}{rght}                        ":goto3000
+ 3900 ifval(a$)<1orval(a$)>20then3700
+ 4000 print"{home}":gh$="{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}":fori=1toval(a$):print"{down}";:next:printgh$;:open1,0:input#1,gi$:close1
+ 4100 ifgi$=cf$(val(a$))thenprint"{home}{rvon}{gry1}                       ":goto3000
+ 4200 cf$(val(a$))=gi$:print"{home}{rvon}{gry1}                           ":goto3000
+ 4300 print"{home}{rvon}{cyn}edit all aspects.{wht}{down}":gh$="{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}"
+ 4400 fori=1to20:printgh$;:open1,0:input#1,cf$(i):close1:printchr$(13);:next
+ 4500 print"{home}{rvon}{gry1}                       ":goto3000
+ 4600 rem
+ 4700 rem
+ 4800 end
+ 4900 print"{clr}{wht}{rvon}edit sequential files..."
+ 5000 end
+ 5100 print"{clr}{wht}{rvon}create user files..."
+ 5200 print"{down}{down}{down}working...":fi$="\!user recs":rl=254:nr=200
+ 5300 dopen#1,(fi$),l(rl):gosub7200
+ 5400 record#1,(nr):record#1,(nr)
+ 5500 gosub7200:print#1,chr$(255);:gosub7200:gosub7200
+ 5600 close1:gosub7200:close15:print"{down}{down}{down}done creating {rvon}\!user recs{rvof}...",;
+ 5700 open1,8,1,"\!user quick,s,w":print#1,"@User Quick!"+chr$(13)+"0"+chr$(13):close1
+ 5800 print"{rvon}\!user quick":print"{down}{down}{down}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rvon}press any key to continue.":getkeya$:end
+ 5900 data unnamed,no,un,1,no,1200,24 hours,xxxxxxxxxx,sysop^sysop2,level 8,no,0,no,0,yes,no,no,fu,fu,fu
+ 6000 data "{rvon}{gry1} handle             {rvof}","{rvon}{cyn} password           {rvof}","{rvon}{gry1} access level       {rvof}","{rvon}{cyn} real name          {rvof}","{rvon}{gry1} address            {rvof}"
+ 6100 data "{rvon}{cyn} city               {rvof}","{rvon}{gry1} state              {rvof}","{rvon}{cyn} zip code           {rvof}","{rvon}{gry1} phone number       {rvof}","{rvon}{cyn} occupation         {rvof}"
+ 6200 data "{rvon}{gry1} computer type      {rvof}","{rvon}{cyn} screen width       {rvof}","{rvon}{gry1} u/d credit blocks  {rvof}","{rvon}{cyn} baud rate          {rvof}","{rvon}{gry1} how heard of sys.  {rvof}"
+ 6300 data "{rvon}{gry1} Graphics Mode      {rvof}","{rvon}{cyn} open               {rvof}","{rvon}{gry1} open               {rvof}","{rvon}{cyn} open               {rvof}", "{rvon}{gry1} Bank Account #     {rvof}"
+ 6400 data "{rvon}{cyn} Time In Bank       {rvof}","{rvon}{gry1} Calls In Bank      {rvof}","{rvon}{cyn} Calls Remaining    {rvof}", "{rvon}{gry1} open               {rvof}","{rvon}{cyn} open               {rvof}"
+ 6500 data "{rvon}{gry1} open               {rvof}","{rvon}{cyn} open               {rvof}","{rvon}{gry1} open               {rvof}","{rvon}{cyn} open               {rvof}", "{rvon}{gry1} open               {rvof}"
+ 6600 data "{rvon}{gry1} name of bbs        {rvof}","{rvon}{cyn} sysop              {rvof}","{rvon}{gry1} available for chat {rvof}","{rvon}{cyn} drives             {rvof}","{rvon}{gry1} modem type         {rvof}"
+ 6700 data "{rvon}{cyn} time limit         {rvof}","{rvon}{gry1} voting booth       {rvof}","{rvon}{cyn} message bases      {rvof}","{rvon}{gry1} color graphics     {rvof}","{rvon}{cyn} protocols          {rvof}"
+ 6800 data "{rvon}{gry1} non-abort          {rvof}","{rvon}{cyn} restrictions       {rvof}","{rvon}{gry1} run credit system? {rvof}","{rvon}{cyn} uploads from       {rvof}","{rvon}{gry1} config data        {rvof}"
+ 6900 data "{rvon}{cyn} config data        {rvof}","{rvon}{gry1} config data        {rvof}","{rvon}{cyn} config data        {rvof}","{rvon}{gry1} config data        {rvof}","{rvon}{cyn} config data        {rvof}"
+ 7000 print"{clr}{wht}loading nnbbs 128 v1...":dload"nnbbs 128 v1":run
+ 7100 print"{clr}{down}{down}{down}there is an error in the programming...":stop
+ 7200 de=0:ifds>1andds<>50thenprint:print"{down}{down}{down}disk error!":print"{down}{rght}{rvon}";ds;"{rvof}:":print"{down}{rght}";ds$:de=1
+ 7300 return
+ 7400 print"{down}{home}{gry1}{rvon}                                                :NNBBS 128 v1 Edit User Routine ":print"{home}{cyn}{rvon} User  # {wht}000":p1=1:p2=15
+ 7500 print"{home}{down}{lgrn}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}{CBM-Y}":print:print:fori=p1top2:in$=str$(i):iflen(in$)<3thenin$=" "+in$
+ 7600 print"{rght}{rght}{wht}"in$":";er$(i);"{wht}:":next
+ 7700 print"{down}{down}{down}{down}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}                              {wht}":fori=1to30:eu$(i)="":next
+ 7800 print"{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rvon}";:open1,0:input#1,un$:close1:ifval(un$)>300orval(un$)<0then7800
+ 7900 ifval(un$)=0then500
+ 8000 dopen#3,"\!user recs":ifds>1andds<>50thenclose3:print"{down}{home}{down}{down}{rght}{rght}{rght}{rght}{rvon}{red} Cannot find the user file! {wht}":sleep2:print"{down}{home}{down}{down}{rght}{rght}{rght}{rght}                                           ":goto7800
+ 8100 record#3,val(un$):record#3,val(un$)
+ 8200 input#3,er$:dclose#3:close15
+ 8300 j=1:i=0
+ 8400 i=i+1:ifi=len(er$)+1theni=0:j=j+1:goto8400
+ 8500 ifj>30thensv$=eu$(1):goto8900
+ 8600 ifmid$(er$,i,1)="%"theneu$(j)=mid$(er$,1,i-1):er$=mid$(er$,i+1,len(er$))+"*":j=j+1:i=0:goto8400
+ 8700 eu$(j)=eu$(j)+mid$(er$,i,1)
+ 8800 goto8400
+ 8900 print"{down}{home}{down}{down}{down}{down}";:fori=1to15:print"{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rvof}";eu$(i);"                    ":next
+ 9000 print:print"{wht}{rvon}^{rvof} Modify One Aspect   {rvon}*{rvof} Modify All Aspects   {rvon}S{rvof} Save user   {rvon}L{rvof} Load user":print"{rvon}{cyn}P{wht}{rvof} Flip Page           {lred}{rvon}_{rvof}{wht} Exit                ";
+ 9100 print" {lred}{rvon}D{rvof}{wht} Delete This User{up}"
+ 9200 geta$:ifa$=""thengoto9200:elsewindow0,2,79,24
+ 9300 ifa$="^"then10600
+ 9400 ifa$="p"then10100
+ 9500 ifa$="*"then11400
+ 9600 ifa$="s"thenfork=1tolen(sv$):eu$=eu$+chr$(r%(asc(mid$(sv$,k,1)))):next:sv$=eu$:dlt=0:goto11600
+ 9700 ifa$="l"then7700
+ 9800 ifa$="d"thenfork=1tolen(sv$):eu$=eu$+chr$(r%(asc(mid$(sv$,k,1)))):next:sv$=eu$:goto13600
+ 9900 ifa$="_"then500
+ 10000 goto9200
+ 10100 ifp1=1thenp1=16:p2=30:elsep1=1:p2=15
+ 10200 print"{down}{home}{down}{down}{down}{down}{down}":fori=p1top2:in$=str$(i):iflen(in$)<3thenin$=" "+in$
+ 10300 print"{rght}{rght}{wht}"in$":";er$(i);"{wht}:                                ":next
+ 10400 print"{down}{home}{down}{down}{down}{down}{down}":fori=p1top2:print"{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}";eu$(i):next
+ 10500 goto9200
+ 10600 print"{down}{home}{down}{down}{down}{down}{rght}{rght}{rght}{rght}{rght}{rvon}edit which aspect{rvof}       {left}{left}{left}{left}{left}{left}";:inputap$:print"{down}{home}{down}{down}{down}{down}{rght}{rght}{rght}{rght}                                         "
+ 10700 ifap$="0"thenprint"{down}{home}{down}{down}{down}{down}{rght}{rght}{rght}{rght}                        ":goto9200
+ 10800 ifval(ap$)<1orval(ap$)>30then10600
+ 10900 ifp1=1thendn=val(ap$):goto11100
+ 11000 dn=val(ap$)-15
+ 11100 print"{down}{home}{down}{down}{down}{down}":fori=1todn:print"{down}";:next:print"{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}";:open1,0:input#1,as$:close1
+ 11200 ifas$=eu$(val(ap$))thengoto9200
+ 11300 eu$(val(ap$))=as$:goto9200
+ 11400 print"{down}{home}{down}{down}{down}{down}{down}{down}";:fori=p1top2:print"{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}";:open1,0:input#1,eu$(i):close1:printchr$(13);:next
+ 11500 goto9200
+ 11600 er$="":fori=1to30:er$=er$+eu$(i)+"%":next
+ 11700 dopen#3,"\!user recs":record#3,val(un$):record#3,val(un$):print#3,er$+chr$(13):dclose#3:close15:i=0
+ 11800 fori=1to100:qf$(i)="":qn$(i)="":next:i=0
+ 11900 i=1:dopen#1,"\!user quick",d0,u8
+ 12000 get#1,a$:ifst<>0then12400
+ 12100 i=i+1:input#1,qf$(i):input#1,qn$(i)
+ 12200 ifi=200then12400:elseget#1,a$:ifst<>0then12400
+ 12300 goto12000
+ 12400 close1:j=0:eu$(1)=eu$:eu$="":qf$(1)=eu$(1)
+ 12500 j=j+1:ifj>ithen13000
+ 12600 ifeu$(1)=qf$(j)thenfork=jtoi-1:qf$(k)=qf$(k+1):qn$(k)=qn$(k+1):next:qf$(i)="":i=i-1:goto12500
+ 12700 ifsv$=qf$(j)thenfork=jtoi-1:qf$(k)=qf$(k+1):qn$(k)=qn$(k+1):next:qf$(i)="":i=i-1:goto12500
+ 12800 ifval(un$)=val(qn$(j))thenfork=jtoi-1:qf$(k)=qf$(k+1):qn$(k)=qn$(k+1):next:qf$(i)="":i=i-1:goto12500
+ 12900 goto12500
+ 13000 fork=1toi:qf$(k)=qf$(k+1):qn$(k)=qn$(k+1):next:ifdlt=1theni=i-1:goto13200
+ 13100 qf$(i)=eu$(1):qn$(i)=str$(val(un$)):qn$(i)=mid$(qn$(i),2,len(qn$(i)))
+ 13200 close15:open15,8,15,"s0:\!user quick":close15:open1,8,1,"\!user quick,s":print#1,"@User Quick!"+chr$(13):print#1,"0"+chr$(13):forj=1toi:ifqf$(j)=""thennext:close1:goto13500
+ 13300 print#1,"@"+qf$(j)+chr$(13):print#1,qn$(j)+chr$(13):next:close1
+ 13400 dlt$="Saved{wht}.   ":ifdlt=1thendlt=0:dlt$="{red}Deleted{wht}.    "
+ 13500 window0,2,79,24:print"{down}{down}{down}{down}{down}    {cyn}User "+dlt$:sleep2:print"{down}{home}{down}{down}{down}{down}{rght}{rght}{rght}{rght}                 ":goto9200
+ 13600 window0,2,79,24:print"{down}{down}{down}{down}{rght}{rght}{rght}{red}Delete This User{wht}? ";:open1,0:input#1,yn$:close1:ifyn$="n"thenprint"{up}                                 ":goto 9300
+ 13700 eu$="":fori=1to30:eu$(i)="@":next:eu$(1)="no one":eu$(20)="0":fori=1to30:eu$=eu$(i)+"%":next:dlt=1:goto11600
+ 13800 data"Gutter Slime","New User","Probation","Validated 300","Validated 1200","Member","Regular","Advanced","Super User","Sysop"
+
